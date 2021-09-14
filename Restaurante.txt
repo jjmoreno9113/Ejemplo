@@ -1,0 +1,73 @@
+//EL CALIFICADOR GENERARÁ ERROR SI USTED NO IMPLEMENTA TODOS LOS MÉTODOS ESPECIFICADOS EN EL ENUNCIADO
+import java.util.ArrayList;
+public class Restaurante {
+
+    private ArrayList<Pedido> pedidos;
+    
+    
+    public Restaurante() {
+        this.pedidos = new ArrayList <>();
+    }
+
+    public ArrayList <Pedido> getPedidos (){
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
+    public void agregarPedidoLista (Pedido pedido){
+        pedidos.add(pedido);
+    }
+    
+    public void eliminarPedido(String nPedido){
+        for (int x=0;x<pedidos.size();x++){
+            if(pedidos.get(x).nPedido==nPedido){
+                pedidos.remove(x);
+            }
+        }
+    }
+    
+    public double calcularGanancias(){
+        double sumaPedidos=0;
+        /*for(Pedido ped:pedidos)
+        sumaPedidos=sumaPedidos+ped.costoPedido;
+    }*/
+    for (int x=0;x<pedidos.size();x++){
+        sumaPedidos=sumaPedidos+pedidos.get(x).costoPedido;
+        }
+        return sumaPedido;
+    }
+    
+    public double promedioGananciasTotales(){
+        double promedio=0;
+        promedio=calcularGanancias()/pedidos.size();
+        return promedio;
+    }
+    
+    public double desviacionEstandarGananciasTotales(){
+        double desviacion=0;
+        double costo=0;
+        double promedio=0;
+        double sumac=0;
+        double cuadrado;
+        for (int x=0;x<pedidos.size();x++){
+            costo=retornarCostoPedido(pedidos.get(x).nPedido);
+            promedio=promedioGananciasTotales();
+            sumac=sumac+Math.pow((costo-promedio),2);
+        }
+         desviacion=Math.sqrt((double)1/3*sumac);
+         return desviacion;
+    }
+    
+    public double retornarCostoPedido(String nPedido){
+        double costoPedido=0;
+        for(Pedido ped:pedidos){
+            if(ped.nPedido==nPedido){
+                costoPedido=ped.costoPedido;
+            }
+        }
+        return costoPedido;
+    }
+}
